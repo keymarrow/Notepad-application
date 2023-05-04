@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/background"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textMyNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12ssp"
+        android:layout_marginTop="@dimen/_20ssp"
+        android:layout_marginEnd="@dimen/_12ssp"
+        style="@style/textview"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    
+    <LinearLayout
+        android:id="@+id/layoutSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8ssp"
+        android:layout_marginTop="@dimen/_15ssp"
+        android:layout_marginEnd="@dimen/_8ssp"
+        android:background="@drawable/background_search"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/_10ssp"
+        android:paddingEnd="@dimen/_10ssp"
+        app:layout_constraintTop_toBottomOf="@id/textMyNote">
+
+        <ImageView
+            android:layout_width="@dimen/_25ssp"
+            android:layout_height="@dimen/_40ssp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_search"
+            app:tint="@color/colorSearchIcon"/>
+        
+        <EditText
+            android:id="@+id/inputSearch"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35ssp"
+            android:layout_marginStart="@dimen/_12ssp"
+            android:background="@null"
+            android:fontFamily="@font/josefinsans_regular"
+            android:hint="@string/search_note"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
+            android:includeFontPadding="false"
+            android:inputType="text"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorTextHint"
+            android:textSize="@dimen/_16ssp"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/notesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_2ssp"
+        android:layout_marginEnd="@dimen/_2ssp"
+        android:clipToPadding="false"
+        android:paddingStart="0dp"
+        android:paddingEnd="@dimen/_12ssp"
+        android:paddingBottom="@dimen/_12ssp"
+        app:layout_constraintBottom_toTopOf="@id/layoutQuickAction"
+        app:layout_constraintTop_toBottomOf="@id/layoutSearch"/>
+
+    <LinearLayout
+        android:id="@+id/layoutQuickAction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorQuickActionBackground"
+        android:padding="@dimen/_15ssp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/imageAddNote"
+            android:layout_width="@dimen/_23ssp"
+            android:layout_height="@dimen/_23ssp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_settings"
+            app:tint="@color/colorIcon"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ImageAddNoteMain"
+        android:layout_width="@dimen/_40ssp"
+        android:layout_height="@dimen/_40ssp"
+        android:layout_marginEnd="@dimen/_30ssp"
+        android:background="@drawable/background_add_btn"
+        android:contentDescription="@string/app_name"
+        android:padding="@dimen/_5ssp"
+        android:src="@drawable/ic_add"
+        app:tint="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@id/layoutQuickAction"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/layoutQuickAction"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
