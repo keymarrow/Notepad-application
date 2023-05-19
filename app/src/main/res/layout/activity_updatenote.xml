@@ -35,13 +35,25 @@
                 app:tint="@color/colorIcon" />
 
             <ImageView
-                android:id="@+id/imageSettings"
+                android:id="@+id/imageShareNote"
+                android:layout_width="@dimen/_23ssp"
+                android:layout_height="@dimen/_23ssp"
+                android:contentDescription="@string/app_name"
+                app:layout_constraintBottom_toBottomOf="@id/back"
+                app:layout_constraintEnd_toStartOf="@id/imageDelete"
+                android:layout_marginRight="@dimen/_16ssp"
+                app:layout_constraintTop_toTopOf="@id/back"
+                android:src="@drawable/ic_share"
+                app:tint="@color/colorIcon" />
+
+            <ImageView
+                android:id="@+id/imageDelete"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginEnd="@dimen/_12ssp"
                 android:contentDescription="@string/app_name"
                 android:padding="@dimen/_1ssp"
-                android:src="@drawable/ic_settings"
+                android:src="@drawable/ic_delete"
                 app:layout_constraintBottom_toBottomOf="@id/back"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/back"
@@ -129,6 +141,7 @@
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_share"
             app:tint="@color/colorIcon" />
+
     </LinearLayout>
 
     <ImageView
