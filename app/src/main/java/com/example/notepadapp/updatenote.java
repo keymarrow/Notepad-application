@@ -78,5 +78,22 @@ public class updatenote extends AppCompatActivity {
             }
         });
 
+        ImageView deleteBtn = findViewById(R.id.imageDelete);
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String title = titleEditText.getText().toString();
+                String subtitle = subtitleEditText.getText().toString();
+
+                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+
+                db.deleteNote(new Note(noteId,title,content));
+
+
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
