@@ -12,10 +12,12 @@ import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder> {
 
-    List<Note> noteList;
-    private View.OnClickListener onClickListener;
-    public NoteAdapter(List<Note> noteList) {
+    private List<Note> noteList;
+    private OnClickListener onClickListener;
+
+    public NoteAdapter(List<Note> noteList, OnClickListener onClickListener) {
         this.noteList = noteList;
+        this.onClickListener = onClickListener;
     }
 
     @NonNull
@@ -23,7 +25,21 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     public NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.activity_note_item, parent, false);
-        return new NoteViewHolder(itemView);
+        NoteViewHolder viewHolder = new NoteViewHolder(itemView);
+
+        // Set the onClickListener for the item view
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = viewHolder.getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    Note note = noteList.get(position);
+                    onClickListener.onClick(position, note);
+                }
+            }
+        });
+
+        return viewHolder;
     }
 
     @Override
@@ -38,6 +54,10 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         return noteList.size();
     }
 
+    public interface OnClickListener {
+        void onClick(int position, Note note);
+    }
+
     public static class NoteViewHolder extends RecyclerView.ViewHolder {
 
         public TextView titleTextView;
@@ -50,4 +70,5 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         }
     }
 }
+
 

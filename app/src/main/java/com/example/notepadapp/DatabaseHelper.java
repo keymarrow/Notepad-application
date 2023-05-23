@@ -1,9 +1,9 @@
 package com.example.notepadapp;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -30,15 +30,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_TITLE + " TEXT, " +
                 COLUMN_SUBTITLE + " TEXT" +
                 ")";
-        db.execSQL(createTableQuery);
+        try {
+            db.execSQL(createTableQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String dropTableQuery = "DROP TABLE IF EXISTS " + TABLE_NOTES;
-        db.execSQL(dropTableQuery);
+        try {
+            db.execSQL(dropTableQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         onCreate(db);
     }
+
 
     public void addNote(Note note) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -55,17 +64,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NOTES, null);
         if (cursor.moveToFirst()) {
             do {
-                @SuppressLint("Range")
-                int id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_ID));
-                @SuppressLint("Range")
-                String title = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_TITLE));
-                @SuppressLint("Range")
-                String subtitle = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_SUBTITLE));
+                int idIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_ID);
+                int titleIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_TITLE);
+                int subtitleIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_SUBTITLE);
 
-                Note note = new Note();
+                int id = cursor.getInt(idIndex);
+                String title = cursor.getString(titleIndex);
+                String subtitle = cursor.getString(subtitleIndex);
+
+                Note note = new Note(title, subtitle);
                 note.setId(id);
-                note.setTitle(title);
-                note.setSubtitle(subtitle);
 
                 noteList.add(note);
             } while (cursor.moveToNext());
@@ -75,4 +83,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return noteList;
     }
 
+
+    public int updateNote(Note note) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_TITLE, note.getTitle());
+        values.put(COLUMN_SUBTITLE, note.getSubtitle());
+
+        int status = db.update(TABLE_NOTES, values, COLUMN_ID + "=?", new String[]{String.valueOf(note.getId())});
+        db.close();
+        return status;
+    }
+
+
+    public void deleteNote(Note note){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NOTES,COLUMN_ID+"=?",new String[]{String.valueOf(note.getId())});
+    }
 }

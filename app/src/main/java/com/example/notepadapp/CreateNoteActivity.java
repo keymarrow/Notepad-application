@@ -53,11 +53,11 @@ public class CreateNoteActivity extends AppCompatActivity {
                 String title = titleEditText.getText().toString();
                 String subtitle = subtitleEditText.getText().toString();
 
-                Intent resultIntent = new Intent();
-                resultIntent.putExtra(EXTRA_NOTE_TITLE, title);
-                resultIntent.putExtra(EXTRA_NOTE_SUBTITLE, subtitle);
-                setResult(RESULT_OK, resultIntent);
-                finish();
+                Note newNote = new Note(title, subtitle);
+                DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+                databaseHelper.addNote(newNote);
+                Intent resultIntent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(resultIntent);
             }
         });
     }

@@ -4,9 +4,9 @@ public class Note {
     private int id;
     private String title;
     private String subtitle;
-    private String body;
 
     public Note() {
+        // Default constructor
     }
 
     public Note(String title, String subtitle) {
@@ -19,7 +19,6 @@ public class Note {
         this.title = title;
         this.subtitle = subtitle;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -40,13 +39,6 @@ public class Note {
         this.subtitle = subtitle;
     }
 
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
 
     public int getId() {
         return id;

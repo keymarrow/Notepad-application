@@ -145,7 +145,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/ImageAddNoteMain"
+        android:id="@+id/imageUpdateNote"
         android:layout_width="@dimen/_40ssp"
         android:layout_height="@dimen/_40ssp"
         android:layout_gravity="bottom|right"
