@@ -8,6 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="primaryVariantColor">#RRGGBB</color>
+    <color name="onPrimaryColor">#RRGGBB</color>
+
+
 
 
 

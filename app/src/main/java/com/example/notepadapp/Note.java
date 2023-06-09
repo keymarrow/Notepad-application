@@ -4,20 +4,23 @@ public class Note {
     private int id;
     private String title;
     private String subtitle;
+    private String body;
 
     public Note() {
         // Default constructor
     }
 
-    public Note(String title, String subtitle) {
+    public Note(String title, String subtitle, String body) {
         this.title = title;
         this.subtitle = subtitle;
+        this.body = body;
     }
 
-    public Note(int id, String title, String subtitle) {
+    public Note(int id, String title, String subtitle, String body) {
         this.id = id;
         this.title = title;
         this.subtitle = subtitle;
+        this.body = body;
     }
     public void setId(int id) {
         this.id = id;
@@ -42,5 +45,13 @@ public class Note {
 
     public int getId() {
         return id;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
     }
 }

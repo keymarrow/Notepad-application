@@ -17,6 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_NOTES = "notes";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_TITLE = "title";
+    private static final String COLUMN_BODY = "body";
     private static final String COLUMN_SUBTITLE = "subtitle";
 
     public DatabaseHelper(Context context) {
@@ -28,7 +29,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String createTableQuery = "CREATE TABLE " + TABLE_NOTES + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_TITLE + " TEXT, " +
-                COLUMN_SUBTITLE + " TEXT" +
+                COLUMN_SUBTITLE + " TEXT," +
+                COLUMN_BODY + " TEXT" +
                 ")";
         try {
             db.execSQL(createTableQuery);
@@ -54,6 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_TITLE, note.getTitle());
         values.put(COLUMN_SUBTITLE, note.getSubtitle());
+        values.put(COLUMN_BODY, note.getBody());
         db.insert(TABLE_NOTES, null, values);
         db.close();
     }
@@ -67,12 +70,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int idIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_ID);
                 int titleIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_TITLE);
                 int subtitleIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_SUBTITLE);
+                int bodyIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_BODY);
 
                 int id = cursor.getInt(idIndex);
                 String title = cursor.getString(titleIndex);
                 String subtitle = cursor.getString(subtitleIndex);
+                String body = cursor.getString(bodyIndex);
 
-                Note note = new Note(title, subtitle);
+                Note note = new Note(title, subtitle, body);
                 note.setId(id);
 
                 noteList.add(note);
@@ -90,6 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_TITLE, note.getTitle());
         values.put(COLUMN_SUBTITLE, note.getSubtitle());
+        values.put(COLUMN_BODY, note.getBody());
 
         int status = db.update(TABLE_NOTES, values, COLUMN_ID + "=?", new String[]{String.valueOf(note.getId())});
         db.close();

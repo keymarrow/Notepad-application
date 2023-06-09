@@ -10,17 +10,18 @@
 
     <TextView
         android:id="@+id/titleTextView"
-        android:layout_width="358dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:text="Title"
+        android:textAlignment="textStart"
         android:textColor="@color/colorNoteColor5"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/subtitleTextView"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:text="Note Body"
         android:textColor="@color/colorNoteColor5"
         android:textStyle="normal" />

@@ -12,6 +12,7 @@ public class CreateNoteActivity extends AppCompatActivity {
 
     public static final String EXTRA_NOTE_TITLE = "extra_note_title";
     public static final String EXTRA_NOTE_SUBTITLE = "extra_note_subtitle";
+    public static final String EXTRA_NOTE_BODY = "extra_note_body";
 
     private EditText titleEditText;
     private EditText subtitleEditText;
@@ -52,8 +53,9 @@ public class CreateNoteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String title = titleEditText.getText().toString();
                 String subtitle = subtitleEditText.getText().toString();
+                String body = inputNote.getText().toString();
 
-                Note newNote = new Note(title, subtitle);
+                Note newNote = new Note(title, subtitle, body);
                 DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
                 databaseHelper.addNote(newNote);
                 Intent resultIntent = new Intent(getApplicationContext(),MainActivity.class);

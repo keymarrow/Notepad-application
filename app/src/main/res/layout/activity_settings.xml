@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/background"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textMySetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12ssp"
+        android:layout_marginTop="@dimen/_20ssp"
+        android:layout_marginEnd="@dimen/_12ssp"
+        style="@style/textview2"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <LinearLayout
+        android:id="@+id/layoutSettings"
+        android:layout_width="407dp"
+        android:layout_height="500dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/layoutQuickAction"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMySetting">
+
+
+        <Switch
+            android:id="@+id/switch2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_13ssp"
+            android:text="Change theme"
+            android:textSize="@dimen/_16ssp"
+            android:fontFamily="@font/josefinsans_medium"
+            android:paddingStart="@dimen/_17ssp"
+            android:paddingEnd="@dimen/_12ssp" />
+
+
+        <RelativeLayout
+            android:id="@+id/languageLayout"
+            android:layout_width="match_parent"
+            android:layout_height="349dp">
+
+            <TextView
+                android:id="@+id/change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Change Language"
+                android:paddingStart="@dimen/_16ssp"
+                android:textSize="@dimen/_16ssp"
+                android:fontFamily="@font/josefinsans_medium"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginRight="47dp"
+                android:background="@drawable/ic_arrow_down" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/change"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:paddingTop="@dimen/_10ssp">
+
+                <TextView
+                    android:id="@+id/logOut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="Log Out"
+                    android:paddingStart="@dimen/_16ssp"
+                    android:fontFamily="@font/josefinsans_medium"
+                    android:textSize="@dimen/_16ssp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginRight="47dp"
+                    android:background="@drawable/ic_logout" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutQuickAction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorQuickActionBackground"
+        android:padding="@dimen/_15ssp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/imageAddNote"
+            android:layout_width="@dimen/_23ssp"
+            android:layout_height="@dimen/_23ssp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_settings"
+            app:tint="@color/colorIcon"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

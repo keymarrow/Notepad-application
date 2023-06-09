@@ -40,6 +40,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        ImageView imageSetting = findViewById(R.id.imageSetting);
+        imageSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,settings.class);
+                startActivity(intent);
+            }
+        });
+
         recyclerView = findViewById(R.id.notesRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         noteList = new ArrayList<>();
@@ -61,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intent.putExtra("id", note.getId());
         intent.putExtra("title", note.getTitle());
         intent.putExtra("subtitle", note.getSubtitle());
+        intent.putExtra("body", note.getBody());
         startActivityForResult(intent, REQUEST_CODE_UPDATE_NOTE);
     }
 

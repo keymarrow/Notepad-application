@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">notepadapp</string>
     <string name="my_note">My Note</string>
+    <string name="my_settings">My Settings</string>
     <string name="search_note">search note</string>
     <string name="note_tittle">Note Tittle</string>
     <string name="note_subtittle">Note subtittle</string>

@@ -7,6 +7,7 @@
     style="@style/background"
     tools:context=".MainActivity">
 
+
     <TextView
         android:id="@+id/textMyNote"
         android:layout_width="match_parent"
@@ -17,7 +18,7 @@
         style="@style/textview"
         app:layout_constraintTop_toTopOf="parent"
         />
-    
+
     <LinearLayout
         android:id="@+id/layoutSearch"
         android:layout_width="match_parent"
@@ -38,7 +39,7 @@
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_search"
             app:tint="@color/colorSearchIcon"/>
-        
+
         <EditText
             android:id="@+id/inputSearch"
             android:layout_width="match_parent"
@@ -75,7 +76,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
-            android:id="@+id/imageAddNote"
+            android:id="@+id/imageSetting"
             android:layout_width="@dimen/_23ssp"
             android:layout_height="@dimen/_23ssp"
             android:contentDescription="@string/app_name"

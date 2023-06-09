@@ -39,11 +39,18 @@ public class updatenote extends AppCompatActivity {
         imageShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text = inputNote.getText().toString();
+                String title = titleEditText.getText().toString();
+                String subtitle = subtitleEditText.getText().toString();
+                String body = inputNote.getText().toString();
+
+                StringBuilder shareText = new StringBuilder();
+                shareText.append("Title: ").append(title).append("\n");
+                shareText.append("Subtitle: ").append(subtitle).append("\n");
+                shareText.append("Body: ").append(body);
 
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
-                shareIntent.putExtra(Intent.EXTRA_TEXT, text);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, shareText.toString());
                 startActivity(Intent.createChooser(shareIntent, "Share via"));
             }
         });
@@ -54,7 +61,7 @@ public class updatenote extends AppCompatActivity {
         noteId = getIntent().getIntExtra("id", 0);
         String title = getIntent().getStringExtra("title");
         String subtitle = getIntent().getStringExtra("subtitle");
-        content = getIntent().getStringExtra("content"); // Retrieve content
+        content = getIntent().getStringExtra("body"); // Retrieve content
 
         titleEditText.setText(title);
         subtitleEditText.setText(subtitle);
@@ -66,11 +73,11 @@ public class updatenote extends AppCompatActivity {
             public void onClick(View view) {
                 String title = titleEditText.getText().toString();
                 String subtitle = subtitleEditText.getText().toString();
-                String content = inputNote.getText().toString(); // Retrieve updated content
+                String body = inputNote.getText().toString(); // Retrieve updated body
 
-                if (!subtitle.isEmpty() && !title.isEmpty()) {
+                if (!body.isEmpty() && !title.isEmpty()) {
                     DatabaseHelper db = new DatabaseHelper(getApplicationContext());
-                    db.updateNote(new Note(noteId, title, subtitle)); // Update note with new content
+                    db.updateNote(new Note(noteId, title, subtitle, body)); // Update note with new body
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
@@ -86,14 +93,16 @@ public class updatenote extends AppCompatActivity {
                 String subtitle = subtitleEditText.getText().toString();
 
                 DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                Note note = new Note();
+                note.setId(noteId);
+                note.setTitle(title);
+                note.setSubtitle(subtitle);
 
-                db.deleteNote(new Note(noteId,title,content));
+                db.deleteNote(note);
 
-
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
-
     }
 }
